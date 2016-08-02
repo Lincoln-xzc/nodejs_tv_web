@@ -7,7 +7,7 @@ var util = require('util');
 var uuid = require('node-uuid');
 
 var conn = mysql.createConnection(conf);
-
+   conn.connect();
 function Table(sql, util, fields, values){
     this.sql = sql;
     this.util = util;
@@ -17,7 +17,7 @@ function Table(sql, util, fields, values){
 
 //添加
 Table.prototype.insert = function(sql, values, callback){
-    conn.connect();
+
     console.log('连接成功');
     if(!callback){
         callback = function(){};
@@ -40,12 +40,12 @@ Table.prototype.insert = function(sql, values, callback){
             callback(result);
         }
     })
-    conn.end();
+
 
 }
 //删除
 Table.prototype.remove = function(sql,ID,callback){
-    conn.connect();
+
     if(!callback){
         callback = function(){};
     }
@@ -60,7 +60,7 @@ Table.prototype.remove = function(sql,ID,callback){
 }
 //更新
 Table.prototype.update = function(sql, values, callback){
-    var pool = createPool();
+
     if(!callback){
         callback = function(){};
     }
@@ -71,12 +71,12 @@ Table.prototype.update = function(sql, values, callback){
             callback(result);
         }
     })
-    conn.end();
+
 }
 //查询
 Table.prototype.select = function(sql, callback){
    // var pool = createPool();
-    conn.connect();
+
     console.log('连接成功');
     if(!callback){
         callback = function(){};
@@ -89,7 +89,7 @@ Table.prototype.select = function(sql, callback){
         }
     })
 
-    conn.end();
+
  /*  pool.getConnection(function(err, conn){
         if(err) console.log('pool==>'+err);
         conn.query(sql, function(err, result){
@@ -105,11 +105,12 @@ Table.prototype.select = function(sql, callback){
 }
 
 //find by Name
-Table.prototype.findByName = function(sql, value, callback){
-    conn.connect();
+Table.prototype.findByCondition = function(sql, value, callback){
+
     if(!callback){
         callback = function(){};
     }
+    console.log('连接成功');
     conn.query(sql,value, function(err,result){
         if(err){
             throw err;
@@ -121,9 +122,10 @@ Table.prototype.findByName = function(sql, value, callback){
             }
             callback(data);
         }
-    })
+    });
 
 }
+
 module.exports = Table;
 
 

@@ -21,7 +21,7 @@ router.post('/login', function(req, res, next){
     var user = [];
     user.push(req.body.name);
     user.push(req.body.password);
-    db.findByName(selectSql, user,function(result){
+    db.findByCondition(selectSql, user,function(result){
         res.json(result);
     })
 })
