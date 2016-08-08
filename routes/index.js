@@ -16,7 +16,7 @@ router.get('/index/:id', function(req, res, next) {
           console.log(data);
           fs.createReadStream(data.url).pipe(res);
       }
-  })
+  });
  /*db.select(selectSql, function(result){
    console.log('aaas');
  })*/

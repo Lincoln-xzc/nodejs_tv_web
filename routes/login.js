@@ -14,7 +14,7 @@ router.post('/addUser', function(req, res, next){
     db.insert(insertSql, user, function(result){
         res.json(result);
     })
-})
+});
 
 router.post('/login', function(req, res, next){
     var selectSql = 'select * from user where name=? and password = ?';
@@ -24,6 +24,6 @@ router.post('/login', function(req, res, next){
     db.findByCondition(selectSql, user,function(result){
         res.json(result);
     })
-})
+});
 
 module.exports = router;

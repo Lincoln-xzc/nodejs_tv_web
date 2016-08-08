@@ -102,7 +102,7 @@ Table.prototype.select = function(sql, callback){
             conn.release();
         })
     })*/
-}
+};
 
 //find by Name
 Table.prototype.findByCondition = function(sql, value, callback){
